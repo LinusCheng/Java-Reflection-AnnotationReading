@@ -9,7 +9,8 @@ import java.util.List;
 import java.util.Map;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException, NoSuchFieldException, InstantiationException, IllegalAccessException {
+
         Map<String, AriCraftTableFieldNameService.FieldDetails> colName2FieldDetailsMap = AriCraftTableFieldNameService.colName2FieldDetailsMap();
 
         List<AirCraft> airCraftList = Excel2EntityService

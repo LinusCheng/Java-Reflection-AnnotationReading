@@ -21,7 +21,8 @@ public class Excel2EntityService {
     public static List<AirCraft> getAirCraftListFromExcel(
             Map<String, AriCraftTableFieldNameService.FieldDetails> colName2FieldDetailsMap,
             String excelFile_path)
-            throws IOException {
+            throws IOException, ClassNotFoundException, InstantiationException,
+            IllegalAccessException, NoSuchFieldException {
 
         List<AirCraft> airCraftList = new ArrayList<>();
 
@@ -47,6 +48,9 @@ public class Excel2EntityService {
                     if (cell!=null) {
                         // populate the entity
 
+                        //if ...
+                        AriCraftTableFieldNameService.setField(fieldDetails, cell.getStringCellValue(),
+                                airCraft, leftEngine, rightEngine);
 
 
                     }
