@@ -22,12 +22,12 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class WriteTableColToExcel {
+public class WriteTableHeaderToExcel {
 
     public static void main(String[] args) {
 
-        List<String> excelColNames = readAnnotation();
-        writeToFile(excelColNames);
+        List<String> excelHeaderNames = readAnnotation();
+        writeToFile(excelHeaderNames);
 
         System.out.println("Col csv file generated");
 
@@ -36,7 +36,7 @@ public class WriteTableColToExcel {
     private static List<String> readAnnotation() {
 
         AirCraft airCraft = new AirCraft();
-        List<String> excelColNames = new ArrayList<>();
+        List<String> excelHeaderNames = new ArrayList<>();
 
         Field[] declaredFields = airCraft.getClass().getDeclaredFields();
         Predicate<Annotation> pColumn = a -> a.annotationType().getName().equals("javax.persistence.Column");
@@ -52,7 +52,7 @@ public class WriteTableColToExcel {
             // Plain field
             if (annotationFilteredList.stream().anyMatch(pColumn)) {
                 Column col = (Column) annotationFilteredList.stream().filter(pColumn).collect(Collectors.toList()).get(0);
-                excelColNames.add(col.name());
+                excelHeaderNames.add(col.name());
             }
             // Object field (The engine)
             else if (annotationFilteredList.stream().anyMatch(pAttrib)) {
@@ -60,12 +60,12 @@ public class WriteTableColToExcel {
                         .collect(Collectors.toList()).get(0);
                 AttributeOverride[] attrsArray = attrs.value();
                 for (AttributeOverride attr: attrsArray) {
-                    excelColNames.add(attr.column().name());
+                    excelHeaderNames.add(attr.column().name());
                 }
             }
         }
 
-        return excelColNames;
+        return excelHeaderNames;
     }
 
 
@@ -79,7 +79,7 @@ public class WriteTableColToExcel {
             cell.setCellValue(excelColNames.get(i));
         }
 
-        Path fileSavingPath = Paths.get("src", "main", "resources", "table", "AircraftCol.xls");
+        Path fileSavingPath = Paths.get("src", "main", "resources", "table", "Header_export.xls");
         String absPath = fileSavingPath.toFile().getAbsolutePath();
         try (FileOutputStream fos = new FileOutputStream(absPath)) {
             workbook.write(fos);
