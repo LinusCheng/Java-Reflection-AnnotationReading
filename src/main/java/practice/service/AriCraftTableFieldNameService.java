@@ -38,9 +38,15 @@ public class AriCraftTableFieldNameService {
             throws IllegalAccessException, ClassNotFoundException, InstantiationException {
         field.setAccessible(true);
         if (cellVal instanceof String) {
-            String converterName = field.getDeclaredAnnotationsByType(Convert.class)[0].converter().getName();
-            AttributeConverter converter = (AttributeConverter) Class.forName(converterName).newInstance();
-            field.set(airCraft_or_engine, converter.convertToEntityAttribute(cellVal));
+
+            //enum
+//            String converterName = field.getDeclaredAnnotationsByType(Convert.class)[0].converter().getName();
+//            AttributeConverter converter = (AttributeConverter) Class.forName(converterName).newInstance();
+//            field.set(airCraft_or_engine, converter.convertToEntityAttribute(cellVal));
+
+            field.set(airCraft_or_engine, cellVal);
+
+
         } else if (cellVal instanceof Double) {
             if (field.getType().getName().equals("java.math.BigDecimal")) {
                 field.set(airCraft_or_engine, BigDecimal.valueOf((Double) cellVal));

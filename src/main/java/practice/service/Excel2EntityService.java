@@ -11,10 +11,7 @@ import practice.entity.Engine;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Excel2EntityService {
 
@@ -33,8 +30,8 @@ public class Excel2EntityService {
         Map<Integer,String> excelColNameIndex = new HashMap<>();
 
         for (Row row: firtSheet) {
-            int rowNum = row.getRowNum();
-            if (rowNum > 0) {
+
+            if (row.getRowNum() > 0) {
                 AirCraft airCraft = new AirCraft();
                 Engine leftCenterEngine = new Engine();
                 Engine rightEngine = new Engine();
@@ -58,6 +55,17 @@ public class Excel2EntityService {
                 airCraft.setLeftOrCenterEngine(leftCenterEngine);
                 airCraft.setRightEngine(rightEngine);
                 airCraftList.add(airCraft);
+            } else {
+                // This is the header
+                Iterator<Cell> cellIterator = row.cellIterator();
+                int colIndex = 0;
+                while (cellIterator.hasNext()) {
+                    Cell cell = cellIterator.next();
+                    excelColNameIndex.put(colIndex, cell.getStringCellValue());
+                    colIndex++;
+                }
+
+
             }
         }
         workbook.close();
