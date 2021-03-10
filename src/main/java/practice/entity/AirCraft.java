@@ -47,13 +47,13 @@ public class AirCraft {
     private int passenger;
 
     @AttributeOverrides({
-            @AttributeOverride(name = "serialNumber", column = @Column(name = "LEFT_ENGINE_SN")),
-            @AttributeOverride(name = "brand", column = @Column(name = "LEFT_ENGINE_BRAND")),
-            @AttributeOverride(name = "makeDate", column = @Column(name = "LEFT_ENGINE_MAKE_DATE")),
-            @AttributeOverride(name = "capacity", column = @Column(name = "LEFT_ENGINE_CAPACITY")),
-            @AttributeOverride(name = "propellerType", column = @Column(name = "LEFT_ENGINE_PROP_TYPE"))
+            @AttributeOverride(name = "serialNumber", column = @Column(name = "LEFT/CENTER_ENGINE_SN")),
+            @AttributeOverride(name = "brand", column = @Column(name = "LEFT/CENTER_ENGINE_BRAND")),
+            @AttributeOverride(name = "makeDate", column = @Column(name = "LEFT/CENTER_ENGINE_MAKE_DATE")),
+            @AttributeOverride(name = "capacity", column = @Column(name = "LEFT/CENTER_ENGINE_CAPACITY")),
+            @AttributeOverride(name = "propellerType", column = @Column(name = "LEFT/CENTER_ENGINE_PROP_TYPE"))
     })
-    private Engine leftEngine;
+    private Engine leftOrCenterEngine;
 
     @AttributeOverrides({
             @AttributeOverride(name = "serialNumber", column = @Column(name = "RIGHT_ENGINE_SN")),

@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 public class AriCraftTableFieldNameService {
 
     public static void setField(FieldDetails fieldDetails, Object cellVal,
-                                AirCraft airCraft, Engine leftEngine, Engine rightEngine)
+                                AirCraft airCraft, Engine leftCenterEngine, Engine rightEngine)
             throws NoSuchFieldException, IllegalAccessException, InstantiationException, ClassNotFoundException {
 
         if (fieldDetails.getAttributeOverrideName() == null) {
@@ -25,8 +25,8 @@ public class AriCraftTableFieldNameService {
             Field field = airCraft.getClass().getDeclaredField(fieldDetails.getFieldName());
             updateAirCraftObjByValType(field, airCraft, cellVal);
         } else if (fieldDetails.getAttributeOverrideName().equals("leftEngine")) {
-            Field field = leftEngine.getClass().getDeclaredField(fieldDetails.getFieldName());
-            updateAirCraftObjByValType(field, leftEngine, cellVal);
+            Field field = leftCenterEngine.getClass().getDeclaredField(fieldDetails.getFieldName());
+            updateAirCraftObjByValType(field, leftCenterEngine, cellVal);
         } else if (fieldDetails.getAttributeOverrideName().equals("rightEngine")) {
             Field field = rightEngine.getClass().getDeclaredField(fieldDetails.getFieldName());
             updateAirCraftObjByValType(field, rightEngine, cellVal);

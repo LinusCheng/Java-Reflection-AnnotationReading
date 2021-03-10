@@ -36,7 +36,7 @@ public class Excel2EntityService {
             int rowNum = row.getRowNum();
             if (rowNum > 0) {
                 AirCraft airCraft = new AirCraft();
-                Engine leftEngine = new Engine();
+                Engine leftCenterEngine = new Engine();
                 Engine rightEngine = new Engine();
 
                 int excelColIndex;
@@ -50,12 +50,12 @@ public class Excel2EntityService {
 
                         //if ...
                         AriCraftTableFieldNameService.setField(fieldDetails, cell.getStringCellValue(),
-                                airCraft, leftEngine, rightEngine);
+                                airCraft, leftCenterEngine, rightEngine);
 
 
                     }
                 }
-                airCraft.setLeftEngine(leftEngine);
+                airCraft.setLeftOrCenterEngine(leftCenterEngine);
                 airCraft.setRightEngine(rightEngine);
                 airCraftList.add(airCraft);
             }
